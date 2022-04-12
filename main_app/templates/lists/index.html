@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Vocab Lists</h1>
+
+{% for list in lists %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ list.title }}</span>
+      <p>Text: {{ list.origin_text }} by {{ list.text_author }}</p>
+      <p>Vocab Words:</p>
+      <ul>
+        {% for word in list.vocab_words %}
+            <li>{{ word }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
