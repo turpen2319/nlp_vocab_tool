@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Delete List</h1>
+
+  <h4>Are you sure you want to delete <span class="teal-text">{{ object.title }}</span>?</h4>
+ <!-- our lists_delete route rendered this form when it got the get req from the delete button, so we 
+    leave action blank to hit that route again with our post request -->
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes - Delete!" class="btn">
+    <a href="{% url 'details' list.id %}">Cancel</a>
+  </form>
+{% endblock %}

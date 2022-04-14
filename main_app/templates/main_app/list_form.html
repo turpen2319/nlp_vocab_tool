@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- The CBVs that work with a single model instance automatically pass as part of the context two attributes that are assigned the 
+    model instance. The attributes are named object and, in this case, cat (the lowercase name of the Model). -->
+{% if object %}
+    <h1>Edit <span class="teal-text">{{ object.title }}</span></h1>
+{% else %}
+    <h1>Add List</h1>
+{% endif %}
+<!-- leaving the aciton empty makes the form post to the same url used to display it
+.../lists/create route generated this form, and we wanna hit it again when user submits form -->
+<form action="" method="POST">
+    <!-- Django requires this "see-surf" token to be generated for security -->
+    {% csrf_token %}
+    <table>
+        <!-- render inputs inside of <tr>s and <td>s -->
+        {{ form.as_table }}
+        <!-- the form variable is an instance of ModelForm class that is instantiated automatically by the CreateView and passed to the template -->
+    </table>
+    <input type="submit" value="Save" class="btn">
+</form>
+
+{% endblock %}

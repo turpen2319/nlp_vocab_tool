@@ -19,8 +19,9 @@
           
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-          <li><a href="/lists">My Lists</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'lists_create' %}">New List</a></li>
+          <li><a href="{% url 'lists_index' %}">My Lists</a></li>
         </ul>
       </div>
     </nav>
