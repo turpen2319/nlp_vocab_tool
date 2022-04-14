@@ -12,12 +12,12 @@ urlpatterns = [
     path('lists/<int:pk>/delete', views.ListDelete.as_view(), name='lists_delete'),
     #IMPORTANT: by convention, CBVs that work with individual model instances will expect to find a named parameter of pk.
     #This is why we don't use list_id like we did in our details route
-    # path('lists/<int:list_id')
+    
 
     path('students/', views.StudentList.as_view(), name='students_index'),
-    # path('students/<int:pk>/', views.StudentDetail.as_view(), name='students_detail'),
-    # path('students/create/', views.StudentCreate.as_view(), name='students_create'),
-    # path('students/<int:pk>/update/', views.StudentUpdate.as_view(), name='students_update'),
-    # path('students/<int:pk>/delete/', views.StudentDelete.as_view(), name='students_delete'),
+    path('students/<int:pk>/', views.StudentDetail.as_view(), name='students_detail'),
+    path('students/create/', views.StudentCreate.as_view(), name='students_create'),
+    path('students/<int:pk>/update/', views.StudentUpdate.as_view(), name='students_update'),
+    path('students/<int:pk>/delete/', views.StudentDelete.as_view(), name='students_delete'),
     # path('cats/<int:cat_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy')
 ]

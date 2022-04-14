@@ -60,7 +60,23 @@ class ListDelete(DeleteView):
 
 class StudentList(ListView):
     model = Student
+
+class StudentDetail(DetailView):
+    model = Student
+
+class StudentCreate(CreateView):
+    model = Student
     fields = '__all__'
+
+class StudentUpdate(UpdateView):
+    pass
+    model = Student
+    fields = '__all__'
+
+class StudentDelete(DeleteView):
+    pass
+    model = Student
+    success_url = '/students/'
 
 #  Note: Everything in a Python module is automatically exported, thus, the Cat class and 
 #the cats list will be accessable in other modules.
