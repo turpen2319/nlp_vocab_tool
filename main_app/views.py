@@ -27,11 +27,24 @@ def lists_index (request):
     lists = List.objects.all()
     return render(request, 'lists/index.html', { 'lists': lists })
 
+def assoc_student(request, list_id, student_id):
+  list = List.objects.get(id=list_id)
+  list.students.add(student_id)
+  return redirect('details', list_id=list_id)
+
 def list_details(request, list_id):
     list = List.objects.get(id=list_id)
+    # First, create a list of the student ids that the list DOES have
+    id_list = list.students.all().values_list('id')
+    # Now we can query for students whose ids are not in the list using exclude
+    students_list_doesnt_have = Student.objects.exclude(id__in=id_list) #the dunder here is called a 'field lookup'
     #must instantiate our custom ModelForm class so it can be rendered inside our details page
     vocab_word_form = VocabWordForm() #store an instance of our form so we can pass it to the context object
-    return render(request, 'lists/details.html', {'list': list, 'vocab_word_form': vocab_word_form})
+    return render(request, 'lists/details.html', {
+        'list': list,
+        'vocab_word_form': vocab_word_form,
+        'students': students_list_doesnt_have
+    })
 
 def add_word(request, list_id):
     #create a ModelForm instance from the data passed from the new word form...that data is represented by request.POST!!!

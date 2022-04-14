@@ -38,5 +38,45 @@
       </table>
     </div>
 </div>
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>Students using {{ list.title }}</h3>
+    {% if list.students.count %}
+      {% for student in list.students.all %}
+        <a href="{% url 'students_detail' student.id %}">
+          <div class="card">
+              <div class="card-content">
+                  <span class="card-title">{{ student.name }}</span>
+              </div>
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      <h5>No Students Yet </h5>
+    {% endif %}
+</div>
+<div class="col s6">
+  <h3>Available Students</h3>
+  {% if students.count %}
+    {% for student in students.all %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">
+            {{ student.name }}
+          </span>
+        </div>
+        <div class="card-action">
+          <form action="{% url 'assoc_student' list.id student.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h5>{{list.title}} Already Has All Students Available</h5>
+  {% endif %}
+</div>
 
 {% endblock %}

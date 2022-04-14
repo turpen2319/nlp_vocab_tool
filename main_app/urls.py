@@ -19,5 +19,5 @@ urlpatterns = [
     path('students/create/', views.StudentCreate.as_view(), name='students_create'),
     path('students/<int:pk>/update/', views.StudentUpdate.as_view(), name='students_update'),
     path('students/<int:pk>/delete/', views.StudentDelete.as_view(), name='students_delete'),
-    # path('cats/<int:cat_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy')
+    path('cats/<int:list_id>/assoc_student/<int:student_id>/', views.assoc_student, name='assoc_student')
 ]

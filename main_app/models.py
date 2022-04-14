@@ -17,7 +17,7 @@ class List(models.Model):
     text_author = models.CharField(max_length=200)
     reading_level = models.CharField(max_length=50)
     #many to many field
-    student = models.ManyToManyField(Student)
+    students = models.ManyToManyField(Student)
 
     def __str__(self):
         return self.title
